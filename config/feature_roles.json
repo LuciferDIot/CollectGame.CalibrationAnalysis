@@ -1,0 +1,28 @@
+{
+  "_comment": "Defines the semantic mapping of telemetry metrics to behavioral archetypes. Used by 02_mode_profiling.ipynb.",
+  "archetypes": {
+    "Combat": [
+      "enemiesHit",
+      "damageDone",
+      "timeInCombat",
+      "deathOccurredInWindow",
+      "deathCountInWindow"
+    ],
+    "Exploration": [
+      "distanceTraveled",
+      "timeSprinting",
+      "timeOutOfCombat"
+    ],
+    "Collection": [
+      "itemsCollected",
+      "heartsCollected",
+      "coinsCollected",
+      "pickupAttempts",
+      "timeNearInteractables"
+    ]
+  },
+  "meta_metrics": {
+    "identifiers": ["userId", "modeId", "_id"],
+    "temporal": ["timestamp", "time", "time_dt", "window_time_key"]
+  }
+}

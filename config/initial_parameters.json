@@ -1,0 +1,19 @@
+{
+  "_meta": {
+    "source_mode": 1.0,
+    "derivation_method": "Mean + 20% Margin"
+  },
+  "target_enemiesHit": 3.7629629629629626,
+  "target_damageDone": 53.82716049382716,
+  "target_timeInCombat": 6.795865027634082,
+  "target_deathOccurredInWindow": 0.0666666666666666,
+  "target_deathCountInWindow": 0.0666666666666666,
+  "target_distanceTraveled": 8716.24121873943,
+  "target_timeSprinting": 5.248055382900767,
+  "target_timeOutOfCombat": 29.43576223361823,
+  "target_itemsCollected": 1.1481481481481481,
+  "target_heartsCollected": 0.5703703703703703,
+  "target_coinsCollected": 0.5777777777777776,
+  "target_pickupAttempts": 4.207407407407407,
+  "target_timeNearInteractables": 2.1370516873344227
+}
