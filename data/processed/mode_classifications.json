@@ -1,0 +1,25 @@
+{
+  "selected_baseline": {
+    "modeId": 1,
+    "role": "neutral_baseline",
+    "neutrality_score": 84.21243927198488,
+    "metrics": {
+      "mean_sparsity": 48.148148148148145,
+      "mean_std": 305.08735568281185,
+      "death_rate": 0.0555555555555555
+    }
+  },
+  "upper_bound": {
+    "modeId": 3,
+    "role": "high_difficulty_bound",
+    "neutrality_score": 106.48424667098698
+  },
+  "lower_bound": {
+    "modeId": 2,
+    "role": "low_difficulty_bound",
+    "neutrality_score": 86.00006392561315
+  },
+  "metadata": {
+    "timestamp": "2026-01-19T10:27:37.590855"
+  }
+}

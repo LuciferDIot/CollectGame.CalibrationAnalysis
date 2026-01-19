@@ -98,11 +98,36 @@ Once the `calibration_dataset.csv` is generated, the following **Analysis Phase*
 *   **Stability Analysis**: detecting "death cascades" or "boredom streaks".
 
 ### 3. Parameter Derivation (`03_parameter_derivation.ipynb`)
-**Objective**: "Select the neutral baseline and derive initial environment parameters." (Steps 5-7)
+**Objective**: "Select the neutral baseline and derive initial PCG parameters from Step 3." (Steps 5-7)
 *   **Selection**: Automatically scores modes based on balance and stability to find the "Neutral Baseline".
 *   **Derivation**: Locks initial PCG parameters (e.g., `EnemyDensity`) based on this baseline.
 *   **Transition**: Explicitly declares the end of Calibration and the start of Model Training.
 
+## Calibration Phase 3: Validation & Integration (Final Analysis)
+
+### 4. Survey Analysis (`04_survey_analysis.ipynb`)
+**Objective**: "Aggregate participant questionnaire responses to establish subjective mode rankings."
+- Computes vote counts for balance categories (most balanced, too easy, too difficult, would play longer)
+- Computes median ratings for combat fairness, exploration comfort, collectible availability
+- Produces ranked summary of modes based on perceived balance
+- **Output**: `data/processed/survey_summary.csv`, `data/processed/survey_rankings.json`
+- **Note**: Does NOT merge with gameplay telemetry (independent subjective analysis)
+
+### 5. Baseline Justification (`05_baseline_justification.ipynb`)
+**Objective**: "Provide detailed justification for neutral baseline selection from gameplay telemetry."
+- Explains why selected mode satisfies neutrality criteria (balance, stability, safety)
+- Flags other modes as upper/lower difficulty bounds
+- Generates documentation suitable for thesis methodology section
+- **Output**: `reports/neutral_baseline_justification.md`, `data/processed/mode_classifications.json`
+- **Note**: Does NOT retrain models or change baseline selection (explanatory only)
+
+### 6. Calibration Report (`06_calibration_report.ipynb`)
+**Objective**: "Integrate objective and subjective results into academic-tone final report."
+- Validates alignment (or analyzes discrepancy) between gameplay and survey analysis
+- Justifies final default configuration selection
+- Declares formal transition from calibration to adaptive training phase
+- **Output**: `reports/calibration_final_report.md`
+- **Academic Tone**: Suitable for direct inclusion in thesis methodology/results chapters
+
 ## Configuration
 *   **`config/feature_roles.json`**: External definition of metric roles. Update this file if the structure of telemetry changes.
-

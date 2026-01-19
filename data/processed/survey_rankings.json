@@ -1,0 +1,58 @@
+{
+  "ranked_by_balance": [
+    {
+      "modeId": 2,
+      "votes_most_balanced": 6,
+      "balance_rank": 1.0
+    },
+    {
+      "modeId": 3,
+      "votes_most_balanced": 1,
+      "balance_rank": 2.0
+    },
+    {
+      "modeId": 1,
+      "votes_most_balanced": 0,
+      "balance_rank": 3.0
+    }
+  ],
+  "vote_counts": {
+    "most_balanced": {
+      "2": 6,
+      "3": 1
+    },
+    "too_easy": {
+      "1": 5,
+      "2": 1
+    },
+    "too_difficult": {
+      "3": 4,
+      "1": 1
+    },
+    "would_play_longer": {
+      "3": 4,
+      "2": 3
+    }
+  },
+  "median_ratings": {
+    "combat_fairness": {
+      "1": 4.0,
+      "2": 4.0,
+      "3": 4.0
+    },
+    "exploration_comfort": {
+      "1": 4.0,
+      "2": 4.0,
+      "3": 3.0
+    },
+    "collectible_availability": {
+      "1": 5.0,
+      "2": 3.0,
+      "3": 5.0
+    }
+  },
+  "metadata": {
+    "total_participants": 7,
+    "timestamp": "2026-01-19T10:27:02.460484"
+  }
+}
