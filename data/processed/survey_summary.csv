@@ -1,0 +1,4 @@
+modeId,votes_most_balanced,votes_too_easy,votes_too_difficult,votes_would_play_longer,median_combat_fairness,median_exploration_comfort,median_collectible_availability,balance_rank
+1,0,5,1,0,4.0,4.0,5.0,3.0
+2,6,1,0,3,4.0,4.0,3.0,1.0
+3,1,0,4,4,4.0,3.0,5.0,2.0
