@@ -1,6 +1,6 @@
 # Neutral Baseline Justification Report
 
-**Generated**: 2026-02-05 10:42:08  
+**Generated**: 2026-03-22 18:39:59  
 **Source Analysis**: `03_parameter_derivation.ipynb`  
 **Selected Baseline**: **Mode 1**
 
