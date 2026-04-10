@@ -1,4 +1,4 @@
-# Technology Stack
+﻿# Technology Stack
 
 ## Core Technologies
 - **Language**: Python 3.14+
@@ -24,3 +24,4 @@ The calibration analysis pipeline validates, processes, and analyzes telemetry d
 ## Configuration & Storage
 - **Configuration**: JSON files (e.g., `config/feature_roles.json`) define metric roles and system parameters.
 - **Data Storage**: Processed data is stored in CSV format (`data/processed/`) for transparency and interoperability.
+

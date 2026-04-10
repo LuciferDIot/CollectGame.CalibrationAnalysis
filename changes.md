@@ -6,10 +6,10 @@
   - Implemented "Nearest Following Window" alignment rule (`Death Time <= Telemetry Time`).
   - Added derived indicators: `deathOccurredInWindow` (binary) and `deathCountInWindow` (count).
 - Created `README.md`: Detailed "Calibration Data Preparation Protocol" and academic justification.
-- Created `changes.md`: This file, to track project history for future handover/AI context.
+- Created `changes.md`: This file, to track project history for future reference.
 
 ### Methodology Notes
-- **Alignment Logic**: Deaths are mapped to the telemetry window that *contains* matching the `userId` and `modeId`. 
+- **Alignment Logic**: Deaths are mapped to the telemetry window that *contains* them, matching on `userId` and `modeId`.
 - **Handling Multiple Deaths**: If multiple deaths fall within one window, `deathCountInWindow` will reflect the total count (e.g., 2 or 4), while `deathOccurredInWindow` remains 1.
 
 ## [2026-01-18 09:15] Calibration Analysis Phase (Steps 1-7)
@@ -25,7 +25,7 @@
 ### Added
 - Created `04_survey_analysis.ipynb`: Processes participant questionnaire data (7 participants), aggregates mode-level votes and median ratings.
   - Computes vote counts for "most balanced" (Mode 2: 6/7 votes), "too easy" (Mode 1: 5/7 votes), "too difficult" (Mode 3: 4/7 votes).
-  - Transformsikert scales to numeric values for median computation.
+  - Transforms Likert scales to numeric values for median computation.
   - **Output**: `data/processed/survey_summary.csv`, `data/processed/survey_rankings.json`
 - Created `05_baseline_justification.ipynb`: Enhances existing gameplay analysis with detailed neutrality explanations.
   - Explains why Mode 1 satisfies neutrality criteria (lowest composite score: 84.21).
@@ -41,7 +41,7 @@
 
 ### Methodology Notes
 - **Mode Mapping**: Survey labels (Mode A/B/C) mapped to telemetry IDs (1/2/3) via username cross-reference.
-- **Likert Transformation**: Text ratings (e.g., "5 (Very fair)") parsed to numeric; categorical values (e.g., "Balanced" → 3) mapped semantically.
+- **Likert Transformation**: Text ratings (e.g., "5 (Very fair)") parsed to numeric; categorical values (e.g., "Balanced" -> 3) mapped semantically.
 - **Median over Mean**: Used median ratings due to small sample size (n=7) to reduce outlier impact.
 - **Alignment Analysis**: Objective (Mode 1) vs. Subjective (Mode 2) discrepancy explained: calibration prioritizes behavioral neutrality over subjective enjoyment for baseline generalizability.
 - **No Model Retraining**: Existing mode selection logic from `03_parameter_derivation.ipynb` remains unchanged; new notebooks provide explanatory documentation only (Phase 2) or independent subjective analysis (Phase 1).

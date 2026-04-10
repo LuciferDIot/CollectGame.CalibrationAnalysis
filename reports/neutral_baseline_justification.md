@@ -1,4 +1,4 @@
-# Neutral Baseline Justification Report
+﻿# Neutral Baseline Justification Report
 
 **Generated**: 2026-03-22 18:39:59  
 **Source Analysis**: `03_parameter_derivation.ipynb`  
@@ -28,7 +28,7 @@ The neutral baseline is selected using a composite scoring algorithm that evalua
 - **Interpretation**: Lower variance indicates stable, non-chaotic gameplay
 - **Mode 1 Performance**: 296.13 mean std dev
 
-**Why this matters**: High variance suggests unpredictable gameplay—either death cascades (repeated failures) or boredom streaks (long periods of inactivity). A neutral baseline should provide consistent challenge.
+**Why this matters**: High variance suggests unpredictable gameplay-either death cascades (repeated failures) or boredom streaks (long periods of inactivity). A neutral baseline should provide consistent challenge.
 
 ### 3. **Safety** (Manageable Death Rate)
 
@@ -66,15 +66,15 @@ NeutralityScore = (MeanSparsity × 1.0) + (DeathRate × 100.0) + (MeanStdDev × 
 
 ## Why Other Modes Do Not Qualify
 
-### Mode 3 — Upper Bound (High Difficulty)
+### Mode 3 - Upper Bound (High Difficulty)
 
 **Neutrality Score**: 105.36 (highest)
 
 - **Death Rate**: 0.2230 deaths/window → Significantly higher than Mode 1
 - **Interpretation**: This mode is **too difficult**. High death frequency suggests frustration and skill ceiling issues.
-- **Classification**: **Upper Difficulty Bound** — Not suitable as neutral baseline, but useful for understanding player tolerance thresholds.
+- **Classification**: **Upper Difficulty Bound** - Not suitable as neutral baseline, but useful for understanding player tolerance thresholds.
 
-### Mode 2 — Lower Bound
+### Mode 2 - Lower Bound
 
 **Neutrality Score**: 82.82
 
@@ -89,9 +89,9 @@ NeutralityScore = (MeanSparsity × 1.0) + (DeathRate × 100.0) + (MeanStdDev × 
 
 **Mode 1** is selected as the **Neutral Baseline** because it:
 
-1. ✓ Maintains balanced activity across all gameplay archetypes (Combat, Exploration, Collection)
-2. ✓ Exhibits stable, predictable gameplay without extreme variance
-3. ✓ Presents manageable challenge (non-zero deaths without frustration)
+1. Maintains balanced activity across all gameplay archetypes (Combat, Exploration, Collection)
+2. Exhibits stable, predictable gameplay without extreme variance
+3. Presents manageable challenge (non-zero deaths without frustration)
 
 This mode represents the **Goldilocks zone** for calibration: not too easy, not too hard, and not favoring any single playstyle.
 
@@ -100,3 +100,4 @@ This mode represents the **Goldilocks zone** for calibration: not too easy, not 
 - Initial PCG parameters are locked based on Mode 1's behavioral profile
 - Calibration phase is **complete**
 - Future telemetry will be used strictly for **adaptive model training**, not calibration refinement
+

@@ -1,4 +1,4 @@
-# Calibration Phase: Final Integration Report
+﻿# Calibration Phase: Final Integration Report
 
 **Date**: 2026-03-21 10:31:22
 **System**: AURA (Adaptive User-Responsive Architecture)
@@ -44,7 +44,7 @@ NeutralityScore = (MeanSparsity * 1.0) + (DeathRate * 100.0) + (MeanStdDev * 0.1
 
 | Mode | Neutrality Score | Role |
 |------|-----------------|------|
-| 1 | 81.05 | **Neutral Baseline** ✓ |
+| 1 | 81.05 | **Neutral Baseline** |
 | 2 | 82.82 | Lower Bound |
 | 3 | 105.36 | Upper Bound (High Difficulty) |
 
@@ -76,7 +76,7 @@ Results were aggregated at the mode level. Median ratings were computed to reduc
 
 | Rank | Mode | Votes | Percentage |
 |------|------|-------|------------|
-| 1 | 2 | 6 | 85.7% ✓ |
+| 1 | 2 | 6 | 85.7% |
 | 2 | 3 | 1 | 14.3% |
 | 3 | 1 | 0 | 0.0% |
 
@@ -231,7 +231,7 @@ The calibration phase has successfully established a neutral baseline (Mode 1)
 for the AURA adaptive gameplay system. This configuration satisfies rigorous criteria for
 behavioural balance, stability, and safety, prioritising objective neutrality over subjective preference for generalisability.
 
-**Calibration Phase Status**: ✓ **COMPLETE**
+**Calibration Phase Status**: **COMPLETE**
 **Next Phase**: Adaptive Model Training
 **Baseline Configuration**: Mode 1
 
@@ -239,3 +239,4 @@ behavioural balance, stability, and safety, prioritising objective neutrality ov
 
 *This report was generated automatically by `06_calibration_report.ipynb` on
 2026-03-21 at 10:31:22.*
+

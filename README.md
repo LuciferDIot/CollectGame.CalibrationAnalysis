@@ -7,14 +7,14 @@
 This process sits **before** behavioural clustering and **after** raw telemetry logging:
 
 **Telemetry (30s windows)**
-→ **Calibration Dataset Construction (this step)**
-→ Normalisation
-→ Behavioural Clustering
-→ Percentages + Deltas
-→ ANFIS Reasoning Layer
-→ Real-Time Procedural Content Adaptation
-→ Smoothing
-→ Logging
+-> **Calibration Dataset Construction (this step)**
+-> Normalisation
+-> Behavioural Clustering
+-> Percentages + Deltas
+-> ANFIS Reasoning Layer
+-> Real-Time Procedural Content Adaptation
+-> Smoothing
+-> Logging
 
 This step **does not perform learning, clustering, or adaptation**.
 
@@ -52,19 +52,19 @@ This dataset serves **only** to:
 
 ## Process Overview
 
-### Step 1 — Inputs
+### Step 1 - Inputs
 
 *   **Telemetry Dataset**: 30-second behavioural observation windows (`userId`, `timestamp`, metrics).
 *   **Death Event Dataset**: Discrete terminal events (`userId`, `timestamp`).
 
-### Step 2 — Temporal Alignment Rule
+### Step 2 - Temporal Alignment Rule
 
 > A death event is associated with the **nearest following telemetry window** for the same user and mode.
 > Specifically: `Death Time <= Telemetry Window Time`
 
 This aligns the death with the window that *contains* it (assuming telemetry timestamps mark the end of the window interval).
 
-### Step 3 — Augmentation
+### Step 3 - Augmentation
 
 The new **Calibration Dataset** includes:
 *   `deathOccurredInWindow` (0 or 1)
@@ -83,7 +83,7 @@ The new **Calibration Dataset** includes:
 
 Once the `calibration_dataset.csv` is generated, the following **Analysis Phase** begins. This phase validates integrity, profiles per-mode behaviour, and derives the initial PCG parameters.
 
-## Process Overview — The 3 Notebooks
+## Process Overview - The 3 Notebooks
 
 ### 1. Integrity Check (`01_integrity_check.ipynb`)
 **Objective**: "Verify that the calibration dataset preserves structural, temporal, and experimental integrity." (Step 1)

@@ -1,4 +1,4 @@
-# Neutral Baseline Justification Report
+﻿# Neutral Baseline Justification Report
 
 **Generated**: 2026-01-19 10:27:37  
 **Selected Baseline**: **Mode 1**
@@ -16,3 +16,4 @@ Mode 1 achieves the lowest neutrality score (84.21).
 - **Baseline**: Mode 1 (balanced, stable, safe)
 - **Upper Bound**: Mode 3 (too difficult, death rate: 0.2258)
 - **Lower Bound**: Mode 2 (alternative reference)
+
