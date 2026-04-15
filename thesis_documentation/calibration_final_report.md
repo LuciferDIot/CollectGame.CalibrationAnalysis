@@ -35,7 +35,7 @@ Telemetry data was collected in 30-second windows during blind gameplay sessions
 A composite neutrality score was calculated:
 
 ```
-NeutralityScore = (MeanSparsity × 1.0) + (DeathRate × 100.0) + (MeanStdDev × 0.1)
+NeutralityScore = (MeanSparsity x 1.0) + (DeathRate x 100.0) + (MeanStdDev x 0.1)
 ```
 
 ### Results

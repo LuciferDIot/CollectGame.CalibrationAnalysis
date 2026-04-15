@@ -47,7 +47,7 @@ The neutral baseline is selected using a composite scoring algorithm that evalua
 The neutrality score is a weighted combination of the above criteria:
 
 ```
-NeutralityScore = (MeanSparsity × 1.0) + (DeathRate × 100.0) + (MeanStdDev × 0.1)
+NeutralityScore = (MeanSparsity x 1.0) + (DeathRate x 100.0) + (MeanStdDev x 0.1)
 ```
 
 **Lower scores = more neutral**
@@ -60,7 +60,7 @@ NeutralityScore = (MeanSparsity × 1.0) + (DeathRate × 100.0) + (MeanStdDev × 
 | 1 | 46.49% | 0.0495 | 296.13 | **-0.59** |
 | 3 | 51.08% | 0.2230 | 319.78 | **1.35** |
 
-→ **Mode 2 achieves the lowest neutrality score**, indicating it best satisfies all three criteria.
+-> **Mode 2 achieves the lowest neutrality score**, indicating it best satisfies all three criteria.
 
 ---
 
@@ -70,7 +70,7 @@ NeutralityScore = (MeanSparsity × 1.0) + (DeathRate × 100.0) + (MeanStdDev × 
 
 **Neutrality Score**: 1.35 (highest)
 
-- **Death Rate**: 0.2230 deaths/window → Significantly higher than Mode 2
+- **Death Rate**: 0.2230 deaths/window -> Significantly higher than Mode 2
 - **Interpretation**: This mode is **too difficult**. High death frequency suggests frustration and skill ceiling issues.
 - **Classification**: **Upper Difficulty Bound** - Not suitable as neutral baseline, but useful for understanding player tolerance thresholds.
 
@@ -89,9 +89,9 @@ NeutralityScore = (MeanSparsity × 1.0) + (DeathRate × 100.0) + (MeanStdDev × 
 
 **Mode 2** is selected as the **Neutral Baseline** because it:
 
-1. ✓ Maintains balanced activity across all gameplay archetypes (Combat, Exploration, Collection)
-2. ✓ Exhibits stable, predictable gameplay without extreme variance
-3. ✓ Presents manageable challenge (non-zero deaths without frustration)
+1. [done] Maintains balanced activity across all gameplay archetypes (Combat, Exploration, Collection)
+2. [done] Exhibits stable, predictable gameplay without extreme variance
+3. [done] Presents manageable challenge (non-zero deaths without frustration)
 
 This mode represents the **Goldilocks zone** for calibration: not too easy, not too hard, and not favoring any single playstyle.
 

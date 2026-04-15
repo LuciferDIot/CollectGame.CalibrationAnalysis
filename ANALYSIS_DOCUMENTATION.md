@@ -34,17 +34,17 @@ Construct a derived, analysis-ready calibration dataset to characterize baseline
 ### Position in AURA Pipeline
 ```
 Telemetry (30s windows)
-    ↓
-Calibration Dataset Construction ← [THIS PROJECT]
-    ↓
+    v
+Calibration Dataset Construction <-- [THIS PROJECT]
+    v
 Normalization
-    ↓
+    v
 Behavioral Clustering
-    ↓
+    v
 Percentages + Deltas
-    ↓
+    v
 ANFIS Reasoning Layer
-    ↓
+    v
 Real-Time Procedural Content Adaptation
 ```
 
@@ -272,16 +272,16 @@ For each **(mode, metric)** pair:
 |---------|---------|----------------|
 | **Mean** | `Σx / n` | Average activity level |
 | **Median** | 50th percentile | Robust central tendency |
-| **Std Dev** | `√(Σ(x - μ)² / n)` | Volatility / stability |
+| **Std Dev** | `√(Σ(x - μ)^2 / n)` | Volatility / stability |
 | **Max** | Maximum observed | Peak intensity |
-| **Sparsity %** | `(count of zeros / n) × 100` | Underutilization |
+| **Sparsity %** | `(count of zeros / n) x 100` | Underutilization |
 
 ### Sparsity Analysis
 
 **Sparsity Formula**: `(# windows with metric = 0) / (total windows for mode)`
 
 **Why Sparsity Matters**:
-- **High sparsity (80%+)**: Feature is rarely used → Mode may favor other playstyles
+- **High sparsity (80%+)**: Feature is rarely used -> Mode may favor other playstyles
 - **Moderate sparsity (30-60%)**: Expected for contextual features (e.g., combat doesn't occur in every window)
 - **Low sparsity (0-20%)**: Feature is consistently active
 
@@ -293,7 +293,7 @@ For each **(mode, metric)** pair:
 
 **Diagnostic Criteria**:
 1. **Engagement**: Mean sparsity across all metrics <50%
-2. **Stability**: Standard deviation not exceeding 2× mean
+2. **Stability**: Standard deviation not exceeding 2x mean
 3. **Balance**: No single archetype (Combat/Exploration/Collection) dominates
 
 **Results**:
@@ -308,8 +308,8 @@ For each **(mode, metric)** pair:
 
 **Observation**: Death rates form a clear gradient across modes
 - Mode 1: 0.0556 deaths/window (5.6% of windows)
-- Mode 2: 0.1103 deaths/window (11.0% of windows) → **2× Mode 1**
-- Mode 3: 0.2258 deaths/window (22.6% of windows) → **4× Mode 1**
+- Mode 2: 0.1103 deaths/window (11.0% of windows) -> **2x Mode 1**
+- Mode 3: 0.2258 deaths/window (22.6% of windows) -> **4x Mode 1**
 
 **Implication**: Modes represent distinct difficulty levels, not just variations
 
@@ -330,7 +330,7 @@ For each **(mode, metric)** pair:
 ### Output
 
 **File**: `data/processed/mode_profiles.csv`  
-**Structure**: 39 rows (3 modes × 13 metrics), 6 columns (mode, metric, mean, median, std, max, sparsity)
+**Structure**: 39 rows (3 modes x 13 metrics), 6 columns (mode, metric, mean, median, std, max, sparsity)
 
 ---
 
@@ -350,29 +350,29 @@ For each **(mode, metric)** pair:
 
 **Formula**:
 ```
-NeutralityScore = (MeanSparsity × 1.0) + (DeathRate × 100.0) + (MeanStdDev × 0.1)
+NeutralityScore = (MeanSparsity x 1.0) + (DeathRate x 100.0) + (MeanStdDev x 0.1)
 ```
 
 **Weight Rationale**:
 
 | Component | Weight | Justification |
 |-----------|--------|---------------|
-| **Sparsity** | 1.0× | Direct engagement signal; 50% sparsity contributes 50 to score |
-| **Death Rate** | 100.0× | Heavy penalty for frustration; 0.10 deaths/window contributes 10 to score |
-| **Std Dev** | 0.1× | Minor stability factor; variance of 300 contributes 30 to score |
+| **Sparsity** | 1.0x | Direct engagement signal; 50% sparsity contributes 50 to score |
+| **Death Rate** | 100.0x | Heavy penalty for frustration; 0.10 deaths/window contributes 10 to score |
+| **Std Dev** | 0.1x | Minor stability factor; variance of 300 contributes 30 to score |
 
 **Why These Weights?**
 
-**Death Rate Dominance (100×)**:
-- A small increase in death rate (0.05 → 0.10) adds 5 to score
+**Death Rate Dominance (100x)**:
+- A small increase in death rate (0.05 -> 0.10) adds 5 to score
 - Equivalent to adding 5% sparsity or 50 units of variance
 - **Rationale**: Frustration is the primary disqualifier for a neutral baseline
 
-**Sparsity as Tiebreaker (1×)**:
+**Sparsity as Tiebreaker (1x)**:
 - If two modes have equal death rates, lower sparsity wins
 - **Rationale**: More engagement is preferable when safety is equal
 
-**Variance as Fine-Tuner (0.1×)**:
+**Variance as Fine-Tuner (0.1x)**:
 - Only contributes 1 point per 10 units of variance
 - **Rationale**: Stability is desirable but not critical for initial calibration
 
@@ -408,22 +408,22 @@ Simply pick the mode that "looks" most balanced
 **Mode 1 Selected**: Lowest score (84.21) indicates most neutral profile
 
 **Why Mode 1 Beats Mode 2**:
-- Mode 2 has lower sparsity (43.89% vs 48.15%) → **+4.26 to Mode 1's score**
-- Mode 2 has higher death rate (0.1103 vs 0.0556) → **+5.47 to Mode 2's score**
-- Death penalty (5.47) > Sparsity benefit (4.26) → Mode 1 wins
+- Mode 2 has lower sparsity (43.89% vs 48.15%) -> **+4.26 to Mode 1's score**
+- Mode 2 has higher death rate (0.1103 vs 0.0556) -> **+5.47 to Mode 2's score**
+- Death penalty (5.47) > Sparsity benefit (4.26) -> Mode 1 wins
 
 ### Parameter Derivation Formula
 
-**Target Metric = Baseline Mean × 1.2** (20% challenge margin)
+**Target Metric = Baseline Mean x 1.2** (20% challenge margin)
 
 **Why 20% Margin?**
-- **Too conservative (1.0×)**: No challenge progression
-- **Too aggressive (1.5×+)**: May overshoot acceptable difficulty
+- **Too conservative (1.0x)**: No challenge progression
+- **Too aggressive (1.5x+)**: May overshoot acceptable difficulty
 - **20% margin**: Industry standard for adaptive difficulty systems
 
 **Example Derivations**:
 
-| Metric | Mode 1 Mean | Target (1.2×) | Unit |
+| Metric | Mode 1 Mean | Target (1.2x) | Unit |
 |--------|-------------|---------------|------|
 | enemiesHit | 3.14 | 3.76 | enemies/window |
 | damageDone | 44.86 | 53.83 | HP/window |
@@ -467,9 +467,9 @@ Simply pick the mode that "looks" most balanced
 - "Which mode would you play longer?"
 
 #### Likert Scale Ratings (per mode)
-- Combat fairness: 1 (Very unfair) → 5 (Very fair)
-- Exploration comfort: 1 (Too cramped) → 5 (Too open)
-- Collectible availability: Categorical (Abundant → Limited) or numeric
+- Combat fairness: 1 (Very unfair) -> 5 (Very fair)
+- Exploration comfort: 1 (Too cramped) -> 5 (Too open)
+- Collectible availability: Categorical (Abundant -> Limited) or numeric
 
 ### Data Transformation Challenges
 
@@ -486,7 +486,7 @@ def parse_likert(value):
     return int(match.group(1)) if match else np.nan
 ```
 
-#### Challenge 2: Categorical → Numeric Mapping
+#### Challenge 2: Categorical -> Numeric Mapping
 
 **Problem**: Some questions used categorical labels (e.g., "Balanced", "Frequently")
 
@@ -606,7 +606,7 @@ If one participant had a bad day and rated everything 1:
 - Serves as starting point for adaptive adjustments
 
 **Upper Bound**: Mode 3 (score 106.48)
-- 4× death rate of Mode 1
+- 4x death rate of Mode 1
 - Represents maximum acceptable difficulty before frustration
 - Useful as upper limit for adaptive scaling
 
@@ -616,7 +616,7 @@ If one participant had a bad day and rated everything 1:
 
 ### Scoring Justification Deep Dive
 
-**Why Death Rate Weight = 100×?**
+**Why Death Rate Weight = 100x?**
 
 Thought experiment:
 - If death rate increases by 0.01 (one extra death per 100 windows ≈ 50 minutes), score increases by 1.0
@@ -626,7 +626,7 @@ These should NOT be equivalent. Death frustration >> minor engagement drop.
 
 **Empirical Validation**:
 - Mode 2 vs Mode 1: Death penalty (5.47) correctly outweighs sparsity benefit (4.26)
-- Mode 3 penalty: Death rate alone contributes 22.58 to score → correctly disqualifies as baseline
+- Mode 3 penalty: Death rate alone contributes 22.58 to score -> correctly disqualifies as baseline
 
 ### Output
 
@@ -700,7 +700,7 @@ alignment_exists = (subjective_rank_1 == selected_baseline)
 **Scenario A: Alignment (Perfect Agreement)**
 - Objective selected Mode X
 - Subjective ranked Mode X highest
-- **Interpretation**: Dual validation → High confidence
+- **Interpretation**: Dual validation -> High confidence
 
 **Scenario B: Discrepancy**
 - Objective selected Mode X
@@ -793,7 +793,7 @@ alignment_exists = (subjective_rank_1 == selected_baseline)
 | Parameter | Value | Rationale |
 |-----------|-------|-----------|
 | **Telemetry Window Size** | 30 seconds | Balances granularity and statistical stability |
-| **Total Windows** | 474 | 158 windows × 3 modes (approx.) |
+| **Total Windows** | 474 | 158 windows x 3 modes (approx.) |
 | **Total Deaths** | 57 events | Natural gameplay outcomes |
 | **Unmatched Deaths** | 2 events (3.5%) | Acceptable loss from temporal misalignment |
 
@@ -830,9 +830,9 @@ alignment_exists = (subjective_rank_1 == selected_baseline)
 
 | Component | Weight | Contribution Range |
 |-----------|--------|-------------------|
-| Mean Sparsity | 1.0× | 0-100 (percentage) |
-| Death Rate | 100.0× | 0-30+ (rate × 100) |
-| Mean Std Dev | 0.1× | 0-50 (variance ÷ 10) |
+| Mean Sparsity | 1.0x | 0-100 (percentage) |
+| Death Rate | 100.0x | 0-30+ (rate x 100) |
+| Mean Std Dev | 0.1x | 0-50 (variance / 10) |
 
 **Typical Score Range**: 70-120
 
@@ -840,7 +840,7 @@ alignment_exists = (subjective_rank_1 == selected_baseline)
 
 | Parameter | Value | Source |
 |-----------|-------|--------|
-| **Challenge Margin** | 1.2× (20%) | Industry standard for adaptive difficulty |
+| **Challenge Margin** | 1.2x (20%) | Industry standard for adaptive difficulty |
 | **Sparsity Threshold** | 50% | Above = "sparse", below = "engaged" |
 | **Death Rate Threshold** | 0.15/window | Above = "frustrating" |
 
@@ -869,21 +869,21 @@ alignment_exists = (subjective_rank_1 == selected_baseline)
 
 **Rationale**:
 - Absolute values are interpretable (e.g., "3.14 enemies per window")
-- Magnitude differences are meaningful (Mode 3's 4× death rate)
+- Magnitude differences are meaningful (Mode 3's 4x death rate)
 - Normalized values lose physical meaning
 
 **Impact**: Parameters derived in actual game units (enemies, HP, seconds)
 
 ---
 
-### Decision 3: Heavy Death Rate Penalty (100×)
+### Decision 3: Heavy Death Rate Penalty (100x)
 
-**Choice**: Weight death rate at 100× sparsity  
+**Choice**: Weight death rate at 100x sparsity  
 **Alternative**: Equal weights or data-driven weight optimization
 
 **Rationale**:
 - Death frustration is primary disqualifier for neutral baseline
-- Small death rate changes (0.05 → 0.10) should significantly impact score
+- Small death rate changes (0.05 -> 0.10) should significantly impact score
 - Reflects player experience research: frustration >> minor engagement drop
 
 **Impact**: Mode 3 correctly disqualified despite acceptable sparsity
@@ -906,13 +906,13 @@ alignment_exists = (subjective_rank_1 == selected_baseline)
 
 ### Decision 5: 20% Challenge Margin
 
-**Choice**: Target = Baseline × 1.2  
-**Alternative**: 1.1× (conservative) or 1.5× (aggressive)
+**Choice**: Target = Baseline x 1.2  
+**Alternative**: 1.1x (conservative) or 1.5x (aggressive)
 
 **Rationale**:
 - Industry standard for adaptive difficulty systems
-- 1.1× too conservative (minimal progression)
-- 1.5× too aggressive (risk of overshooting)
+- 1.1x too conservative (minimal progression)
+- 1.5x too aggressive (risk of overshooting)
 - 20% provides meaningful but manageable increase
 
 **Impact**: Parameters provide clear but not overwhelming progression targets
@@ -996,9 +996,9 @@ alignment_exists = (subjective_rank_1 == selected_baseline)
 ### Experiment 1: Death Alignment Direction
 
 **Tested Approaches**:
-1. **Forward merge** (chosen): Death → nearest following window
-2. **Backward merge**: Death → nearest preceding window
-3. **Nearest merge**: Death → closest window (either direction)
+1. **Forward merge** (chosen): Death -> nearest following window
+2. **Backward merge**: Death -> nearest preceding window
+3. **Nearest merge**: Death -> closest window (either direction)
 
 **Results**:
 - Forward: 96.5% match rate, deaths fall within observation period
@@ -1028,8 +1028,8 @@ alignment_exists = (subjective_rank_1 == selected_baseline)
 ### Experiment 3: Neutrality Scoring Weights
 
 **Tested Approaches**:
-1. **Current** (chosen): Sparsity 1.0×, Death 100×, Std 0.1×
-2. **Equal weights**: All 1.0×
+1. **Current** (chosen): Sparsity 1.0x, Death 100x, Std 0.1x
+2. **Equal weights**: All 1.0x
 3. **Z-score normalization**: Standardize before summing
 4. **Manual ranking**: No formula, just inspect
 
@@ -1046,7 +1046,7 @@ alignment_exists = (subjective_rank_1 == selected_baseline)
 ### Experiment 4: Parameter Derivation Formula
 
 **Tested Approaches**:
-1. **Current** (chosen): Target = Baseline × 1.2
+1. **Current** (chosen): Target = Baseline x 1.2
 2. **Percentile-based**: Target = 75th percentile of baseline distribution
 3. **Standard deviation**: Target = Baseline mean + 0.5 SD
 4. **Fixed increment**: Target = Baseline + constant
@@ -1057,7 +1057,7 @@ alignment_exists = (subjective_rank_1 == selected_baseline)
 - SD-based: Assumes normal distribution (not always true)
 - Fixed: Doesn't scale (0.5 enemies is big, 0.5 seconds is tiny)
 
-**Conclusion**: Proportional scaling (1.2×) maintains relative relationships
+**Conclusion**: Proportional scaling (1.2x) maintains relative relationships
 
 ---
 
@@ -1087,24 +1087,24 @@ alignment_exists = (subjective_rank_1 == selected_baseline)
 Raw Telemetry (474 rows)
     +
 Death Events (57 events)
-    ↓
+    v
 [Temporal Alignment: merge_asof forward]
-    ↓
+    v
 Calibration Dataset (474 rows, +2 death columns)
-    → calibration_dataset.csv
+    -> calibration_dataset.csv
 ```
 
 ### Phase 2: Validation (Notebook 01)
 
 ```
 Calibration Dataset
-    ↓
+    v
 [Coverage Check: All users in all modes?]
-    ↓
+    v
 [Completeness Check: No NaNs in critical columns?]
-    ↓
+    v
 [Plausibility Check: Metrics non-negative?]
-    ↓
+    v
 Validation Report (PASS/FAIL)
 ```
 
@@ -1112,46 +1112,46 @@ Validation Report (PASS/FAIL)
 
 ```
 Calibration Dataset
-    ↓
+    v
 [Group by (mode, metric)]
-    ↓
+    v
 [Compute: mean, median, std, max, sparsity]
-    ↓
-Mode Profiles (39 rows: 3 modes × 13 metrics)
-    → mode_profiles.csv
+    v
+Mode Profiles (39 rows: 3 modes x 13 metrics)
+    -> mode_profiles.csv
 ```
 
 ### Phase 4: Selection (Notebook 03)
 
 ```
 Mode Profiles
-    ↓
+    v
 [Compute: Mean sparsity, mean std, death rate per mode]
-    ↓
-[Score = Sparsity×1.0 + Death×100 + Std×0.1]
-    ↓
+    v
+[Score = Sparsityx1.0 + Deathx100 + Stdx0.1]
+    v
 [Select: Mode with lowest score]
-    ↓
+    v
 Selected Baseline (Mode 1)
     +
-[Derive: Target = Baseline mean × 1.2 for each metric]
-    ↓
+[Derive: Target = Baseline mean x 1.2 for each metric]
+    v
 Initial Parameters (13 targets)
-    → initial_parameters.json
+    -> initial_parameters.json
 ```
 
 ### Phase 5: Survey Analysis (Notebook 04)
 
 ```
 Survey Responses (7 participants)
-    ↓
+    v
 [Parse: Likert scales, map categories to numeric]
-    ↓
+    v
 [Aggregate: Vote counts, median ratings per mode]
-    ↓
+    v
 Survey Rankings
-    → survey_summary.csv
-    → survey_rankings.json
+    -> survey_summary.csv
+    -> survey_rankings.json
 ```
 
 ### Phase 6: Justification (Notebook 05)
@@ -1160,12 +1160,12 @@ Survey Rankings
 Mode Profiles
     +
 Initial Parameters
-    ↓
+    v
 [Generate: Academic-tone markdown documentation]
-    ↓
+    v
 Baseline Justification Report
-    → neutral_baseline_justification.md
-    → mode_classifications.json
+    -> neutral_baseline_justification.md
+    -> mode_classifications.json
 ```
 
 ### Phase 7: Final Integration (Script 06)
@@ -1176,13 +1176,13 @@ Survey Rankings
 Mode Classifications
     +
 Initial Parameters
-    ↓
+    v
 [Alignment Analysis: Objective vs Subjective]
-    ↓
+    v
 [Generate: Comprehensive final report]
-    ↓
+    v
 Calibration Final Report
-    → calibration_final_report.md
+    -> calibration_final_report.md
 ```
 
 ---
@@ -1198,29 +1198,29 @@ Calibration Final Report
 │  • telemetry.users.csv (8 users)                           │
 │  • Survey responses (7 participants)                        │
 └─────────────────────────────────────────────────────────────┘
-                          ↓
+                          v
 ┌─────────────────────────────────────────────────────────────┐
 │           NOTEBOOK 00: Dataset Generation                   │
 │  • Temporal alignment (merge_asof forward)                  │
 │  • Death indicator creation                                 │
 │  • Output: calibration_dataset.csv                          │
 └─────────────────────────────────────────────────────────────┘
-                          ↓
+                          v
 ┌─────────────────────────────────────────────────────────────┐
 │           NOTEBOOK 01: Integrity Validation                 │
-│  • Coverage check (users × modes)                           │
+│  • Coverage check (users x modes)                           │
 │  • Completeness check (no NaNs)                             │
 │  • Plausibility check (non-negative)                        │
 │  • Gate: MUST PASS to proceed                               │
 └─────────────────────────────────────────────────────────────┘
-                          ↓
+                          v
 ┌─────────────────────────────────────────────────────────────┐
 │           NOTEBOOK 02: Mode Profiling                       │
 │  • Per-mode behavioral fingerprints                         │
 │  • Sparsity & stability analysis                            │
 │  • Output: mode_profiles.csv                                │
 └─────────────────────────────────────────────────────────────┘
-                          ↓
+                          v
 ┌─────────────────────────────────────────────────────────────┐
 │           NOTEBOOK 03: Parameter Derivation                 │
 │  • Neutrality scoring algorithm                             │
@@ -1229,9 +1229,9 @@ Calibration Final Report
 │  • Output: initial_parameters.json                          │
 │  • CALIBRATION FREEZE declared                              │
 └─────────────────────────────────────────────────────────────┘
-                          ↓
+                          v
           ┌───────────────┴───────────────┐
-          ↓                               ↓
+          v                               v
 ┌─────────────────────────┐   ┌─────────────────────────┐
 │  NOTEBOOK 04: Survey    │   │  NOTEBOOK 05: Baseline  │
 │     Analysis            │   │    Justification        │
@@ -1244,15 +1244,15 @@ Calibration Final Report
 └─────────────────────────┘   └─────────────────────────┘
           │                               │
           └───────────────┬───────────────┘
-                          ↓
+                          v
 ┌─────────────────────────────────────────────────────────────┐
 │           SCRIPT 06: Final Report Generation                │
 │  • Alignment analysis (objective vs subjective)             │
 │  • Academic-tone integration report                         │
-│  • Transition declaration (calibration → training)          │
+│  • Transition declaration (calibration -> training)          │
 │  • Output: calibration_final_report.md                      │
 └─────────────────────────────────────────────────────────────┘
-                          ↓
+                          v
 ┌─────────────────────────────────────────────────────────────┐
 │              CALIBRATION PHASE COMPLETE                     │
 │  Next Phase: Adaptive Model Training                        │
