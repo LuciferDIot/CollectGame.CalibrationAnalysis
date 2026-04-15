@@ -1,29 +1,29 @@
 {
   "selected_baseline": {
-    "modeId": 1,
+    "modeId": 2,
     "role": "neutral_baseline",
-    "neutrality_score": 81.05029156158042,
+    "neutrality_score": -0.7526093995818106,
     "metrics": {
-      "mean_sparsity": 46.49196956889264,
-      "mean_std": 296.13267047632837,
-      "death_rate": 0.0494505494505494
+      "mean_sparsity": 43.2378079436903,
+      "mean_std": 297.82077665091225,
+      "death_rate": 0.0980392156862745
     }
   },
   "upper_bound": {
     "modeId": 3,
     "role": "high_difficulty_bound",
-    "neutrality_score": 105.35963074800584,
+    "neutrality_score": 1.3469284960067323,
     "reason": "High death rate indicates excessive difficulty"
   },
   "lower_bound": {
-    "modeId": 2,
+    "modeId": 1,
     "role": "low_difficulty_bound",
-    "neutrality_score": 82.82380717740898,
+    "neutrality_score": -0.5943190964249221,
     "reason": "Used as minimum engagement reference"
   },
   "metadata": {
     "scoring_algorithm": "weighted_composite",
-    "timestamp": "2026-03-22T18:39:59.293637",
+    "timestamp": "2026-04-16T01:23:19.396122",
     "source_notebook": "03_parameter_derivation.ipynb"
   }
 }

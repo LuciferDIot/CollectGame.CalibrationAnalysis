@@ -1,19 +1,19 @@
 {
   "_meta": {
-    "source_mode": 1.0,
+    "source_mode": 2.0,
     "derivation_method": "Mean + 20% Margin"
   },
-  "target_enemiesHit": 3.718681318681319,
-  "target_damageDone": 53.512087912087914,
-  "target_timeInCombat": 6.882288621971894,
-  "target_deathOccurredInWindow": 0.059340659340659276,
-  "target_deathCountInWindow": 0.059340659340659276,
-  "target_distanceTraveled": 8759.8608497068,
-  "target_timeSprinting": 5.434324449161578,
-  "target_timeOutOfCombat": 29.323857450583482,
-  "target_itemsCollected": 1.2527472527472527,
-  "target_heartsCollected": 0.6197802197802198,
-  "target_coinsCollected": 0.6329670329670329,
-  "target_pickupAttempts": 4.153846153846154,
-  "target_timeNearInteractables": 2.6047960147016
+  "target_enemiesHit": 3.2549019607843137,
+  "target_damageDone": 51.62222222222221,
+  "target_timeInCombat": 6.015595097255472,
+  "target_deathOccurredInWindow": 0.11764705882352938,
+  "target_deathCountInWindow": 0.11764705882352938,
+  "target_distanceTraveled": 10252.129623027145,
+  "target_timeSprinting": 6.37295643660952,
+  "target_timeOutOfCombat": 30.230832562522558,
+  "target_itemsCollected": 1.8117647058823527,
+  "target_heartsCollected": 0.9411764705882353,
+  "target_coinsCollected": 0.8705882352941176,
+  "target_pickupAttempts": 5.003921568627451,
+  "target_timeNearInteractables": 2.119037760531201
 }

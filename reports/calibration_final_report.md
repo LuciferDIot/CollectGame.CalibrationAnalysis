@@ -212,7 +212,7 @@ From this point forward:
 
 - **Baseline Justification**: Mode 1 selection is justified through quantitative
   criteria, not arbitrary choice.
-- **Reproducibility**: All analysis notebooks (01–06) can be re-executed on future datasets.
+- **Reproducibility**: All analysis notebooks (01-06) can be re-executed on future datasets.
 - **Separation of Phases**: Clear boundary established between calibration and training prevents
   data contamination.
 
