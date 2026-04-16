@@ -1,12 +1,12 @@
 {
   "selected_baseline": {
-    "modeId": 2,
+    "modeId": 1,
     "role": "neutral_baseline",
-    "neutrality_score": -0.7526093995818106,
+    "neutrality_score": -0.5943190964249221,
     "metrics": {
-      "mean_sparsity": 43.2378079436903,
-      "mean_std": 297.82077665091225,
-      "death_rate": 0.0980392156862745
+      "mean_sparsity": 46.49196956889264,
+      "mean_std": 296.13267047632837,
+      "death_rate": 0.0494505494505494
     }
   },
   "upper_bound": {
@@ -16,14 +16,14 @@
     "reason": "High death rate indicates excessive difficulty"
   },
   "lower_bound": {
-    "modeId": 1,
+    "modeId": 2,
     "role": "low_difficulty_bound",
-    "neutrality_score": -0.5943190964249221,
+    "neutrality_score": -0.7526093995818106,
     "reason": "Used as minimum engagement reference"
   },
   "metadata": {
     "scoring_algorithm": "weighted_composite",
-    "timestamp": "2026-04-16T01:23:19.396122",
+    "timestamp": "2026-04-16T09:41:11.178717",
     "source_notebook": "03_parameter_derivation.ipynb"
   }
 }
